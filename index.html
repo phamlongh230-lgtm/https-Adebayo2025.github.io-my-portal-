@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JFIHS Pro Dashboard - Vu Tam</title>
+    <style>
+        :root {
+            --primary: #004098;
+            --accent: #f39200;
+            --bg-dark: #001f4b;
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Malgun Gothic', 'Segoe UI', sans-serif;
+            background: linear-gradient(-45deg, #001f4b, #03396c, #005b96, #011f4b);
+            background-size: 400% 400%; animation: gradient 15s ease infinite;
+            display: flex; justify-content: center; align-items: center; min-height: 100vh;
+            color: #333; overflow-x: hidden;
+        }
+
+        @keyframes gradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            width: 380px; padding: 25px; border-radius: 35px;
+            text-align: center; box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+            backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .school-tag { background: var(--accent); color: white; padding: 5px 15px; border-radius: 20px; font-size: 11px; font-weight: bold; display: inline-block; margin-bottom: 5px; }
+        .title { color: var(--primary); font-size: 20px; margin: 5px 0; font-weight: 800; }
+        .clock { font-size: 48px; font-weight: 900; color: var(--primary); margin: 5px 0; font-variant-numeric: tabular-nums; }
+        .date { color: #555; font-size: 15px; margin-bottom: 15px; }
+
+        /* Group các Link chính */
+        .main-links { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; }
+        
+        .btn {
+            text-decoration: none; color: white; padding: 12px; border-radius: 12px;
+            font-weight: bold; font-size: 13px; display: flex; align-items: center; justify-content: center; gap: 8px;
+            transition: 0.3s;
+        }
+        .btn-blue { background: var(--primary); }
+        .btn-dark { background: #00255a; }
+        .btn:hover { transform: scale(1.03); opacity: 0.9; }
+
+        /* Menu tiện ích bổ sung */
+        .extra-links {
+            display: flex; justify-content: space-around; 
+            background: rgba(0,0,0,0.05); padding: 10px; border-radius: 15px; margin-top: 10px;
+        }
+        .extra-links a { text-decoration: none; font-size: 20px; transition: 0.3s; }
+        .extra-links a:hover { transform: translateY(-3px); }
+
+        .footer { margin-top: 15px; font-size: 11px; color: #666; border-top: 1px solid #ddd; padding-top: 10px; text-align: left; line-height: 1.5; }
+        .footer a { color: var(--primary); text-decoration: none; font-weight: bold; }
+        
+        /* Chống lỗi Google Translate */
+        .skiptranslate { display: none !important; }
+        body { top: 0px !important; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <div id="google_translate_element"></div>
+    <div class="school-tag">⭐ GLOBAL CAMPUS</div>
+    <div class="title">전남미래국제고등학교</div>
+    
+    <div id="clock" class="clock">00:00:00</div>
+    <div id="date" class="date">Thứ Năm, 26 tháng 3</div>
+
+    <div class="main-links">
+        <a href="https://www.JNMT.kr" target="_blank" class="btn btn-blue">🌐 Website</a>
+        <a href="https://jnmt.kr/vi/login" target="_blank" class="btn btn-dark">🔑 Portal</a>
+    </div>
+
+    <div style="font-size: 12px; font-weight: bold; color: var(--primary); text-align: left; margin-left: 5px;">🚀 Quick Access:</div>
+    <div class="extra-links">
+        <a href="https://classroom.google.com" target="_blank" title="Google Classroom">🎓</a>
+        <a href="https://dict.naver.com/vi-ko-vietnamese-dictionary/" target="_blank" title="Từ điển Naver">📖</a>
+        <a href="https://map.kakao.com" target="_blank" title="Kakao Map">📍</a>
+        <a href="https://translate.google.com" target="_blank" title="Google Dịch">🔤</a>
+        <a href="https://www.facebook.com/messages/" target="_blank" title="Messenger">💬</a>
+    </div>
+
+    <div class="footer">
+        👤 <b>Học sinh: Vu Tam</b><br>
+        📧 phamlongh230@gmail.com | 📞 010-6315-8995
+    </div>
+</div>
+
+<script>
+    function update() {
+        const now = new Date();
+        document.getElementById('clock').innerText = now.toLocaleTimeString('ko-KR', {hour12: false});
+        document.getElementById('date').innerText = now.toLocaleDateString('vi-VN', {weekday: 'long', day: 'numeric', month: 'long'});
+    }
+    setInterval(update, 1000); update();
+
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({pageLanguage: 'ko'}, 'google_translate_element');
+    }
+</script>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+</html>
+<div style="font-size: 12px; font-weight: bold; color: var(--primary); text-align: left; margin-left: 5px; margin-top: 15px;">🚀 Truy cập nhanh:</div>
+    <div class="extra-links">
+        <a href="https://www.facebook.com/vutam1810/" target="_blank" title="Facebook Vũ Tâm" style="filter: drop-shadow(0 0 2px #1877F2);">🔵</a> 
+        <a href="https://classroom.google.com" target="_blank" title="Google Classroom">🎓</a>
+        <a href="https://dict.naver.com/vi-ko-vietnamese-dictionary/" target="_blank" title="Từ điển Naver">📖</a>
+        <a href="https://map.kakao.com" target="_blank" title="Kakao Map">📍</a>
+        <a href="https://translate.google.com" target="_blank" title="Google Dịch">🔤</a>
+    </div>
