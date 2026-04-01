@@ -1,118 +1,381 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JFIHS Pro Dashboard - Vu Tam</title>
-    <style>
-        :root {
-            --primary: #004098;
-            --accent: #f39200;
-            --bg-dark: #001f4b;
-        }
-
-        body {
-            margin: 0; padding: 0;
-            font-family: 'Malgun Gothic', 'Segoe UI', sans-serif;
-            background: linear-gradient(-45deg, #001f4b, #03396c, #005b96, #011f4b);
-            background-size: 400% 400%; animation: gradient 15s ease infinite;
-            display: flex; justify-content: center; align-items: center; min-height: 100vh;
-            color: #333; overflow-x: hidden;
-        }
-
-        @keyframes gradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-
-        .card {
-            background: rgba(255, 255, 255, 0.95);
-            width: 380px; padding: 25px; border-radius: 35px;
-            text-align: center; box-shadow: 0 25px 50px rgba(0,0,0,0.4);
-            backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.3);
-        }
-
-        .school-tag { background: var(--accent); color: white; padding: 5px 15px; border-radius: 20px; font-size: 11px; font-weight: bold; display: inline-block; margin-bottom: 5px; }
-        .title { color: var(--primary); font-size: 20px; margin: 5px 0; font-weight: 800; }
-        .clock { font-size: 48px; font-weight: 900; color: var(--primary); margin: 5px 0; font-variant-numeric: tabular-nums; }
-        .date { color: #555; font-size: 15px; margin-bottom: 15px; }
-
-        /* Group các Link chính */
-        .main-links { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; }
-        
-        .btn {
-            text-decoration: none; color: white; padding: 12px; border-radius: 12px;
-            font-weight: bold; font-size: 13px; display: flex; align-items: center; justify-content: center; gap: 8px;
-            transition: 0.3s;
-        }
-        .btn-blue { background: var(--primary); }
-        .btn-dark { background: #00255a; }
-        .btn:hover { transform: scale(1.03); opacity: 0.9; }
-
-        /* Menu tiện ích bổ sung */
-        .extra-links {
-            display: flex; justify-content: space-around; 
-            background: rgba(0,0,0,0.05); padding: 10px; border-radius: 15px; margin-top: 10px;
-        }
-        .extra-links a { text-decoration: none; font-size: 20px; transition: 0.3s; }
-        .extra-links a:hover { transform: translateY(-3px); }
-
-        .footer { margin-top: 15px; font-size: 11px; color: #666; border-top: 1px solid #ddd; padding-top: 10px; text-align: left; line-height: 1.5; }
-        .footer a { color: var(--primary); text-decoration: none; font-weight: bold; }
-        
-        /* Chống lỗi Google Translate */
-        .skiptranslate { display: none !important; }
-        body { top: 0px !important; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#2563eb">
+  <title>JNMT Student Hub - 전남미래국제고등학교</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div id="app">
+    <!-- Header Navigation -->
+    <header class="navbar">
+      <div class="navbar-container">
+        <div class="navbar-brand">
+          <button class="nav-toggle" id="navToggle">
+            <i class="fas fa-bars"></i>
+          </button>
+          <a href="#" class="logo">
+            <span class="logo-icon">🎓</span>
+            <span class="logo-text">JNMT</span>
+            <span class="logo-subtitle">Student Hub</span>
+          </a>
+        </div>
 
-<div class="card">
-    <div id="google_translate_element"></div>
-    <div class="school-tag">⭐ GLOBAL CAMPUS</div>
-    <div class="title">전남미래국제고등학교</div>
-    
-    <div id="clock" class="clock">00:00:00</div>
-    <div id="date" class="date">Thứ Năm, 26 tháng 3</div>
+        <nav class="nav-menu" id="navMenu">
+          <a href="#home" class="nav-link active" data-page="home">
+            <i class="fas fa-home"></i> <span data-i18n="home">Trang chủ</span>
+          </a>
+          <a href="#ai" class="nav-link" data-page="ai">
+            <i class="fas fa-robot"></i> <span data-i18n="ai">AI</span>
+          </a>
+          <a href="#dictionary" class="nav-link" data-page="dictionary">
+            <i class="fas fa-book"></i> <span data-i18n="dictionary">Từ điển</span>
+          </a>
+          <a href="#schedule" class="nav-link" data-page="schedule">
+            <i class="fas fa-calendar"></i> <span data-i18n="schedule">TKB</span>
+          </a>
+          <a href="#chat" class="nav-link" data-page="chat">
+            <i class="fas fa-comments"></i> <span data-i18n="chat">Chat</span>
+          </a>
+          <a href="#map" class="nav-link" data-page="map">
+            <i class="fas fa-map-location-dot"></i> <span data-i18n="map">Bản đồ</span>
+          </a>
+        </nav>
 
-    <div class="main-links">
-        <a href="https://www.JNMT.kr" target="_blank" class="btn btn-blue">🌐 Website</a>
-        <a href="https://jnmt.kr/vi/login" target="_blank" class="btn btn-dark">🔑 Portal</a>
+        <div class="navbar-right">
+          <button class="theme-toggle" id="themeToggle" title="Chế độ tối/sáng">
+            <i class="fas fa-moon"></i>
+          </button>
+          <select id="languageSelect" class="language-select">
+            <option value="vi">🇻🇳 Việt</option>
+            <option value="ko">🇰🇷 한국어</option>
+            <option value="en">🇬🇧 English</option>
+            <option value="mn">🇲🇳 Монгол</option>
+            <option value="kk">🇰🇿 Қазақ</option>
+            <option value="ru">🇷🇺 Русский</option>
+          </select>
+          <button class="user-menu-btn" id="userMenuBtn">
+            <i class="fas fa-user-circle"></i>
+          </button>
+          <div class="user-menu" id="userMenu">
+            <div id="userMenuContent"></div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Home Page -->
+      <section id="home" class="page active">
+        <div class="page-container">
+          <!-- Top Banner -->
+          <div class="banner">
+            <div class="banner-content">
+              <div class="banner-text">
+                <h1 id="schoolName">전남미래국제고등학교</h1>
+                <p id="schoolNameEn">Jeonnam Future International High School</p>
+                <div class="clock">
+                  <div id="timeDisplay">09:41:56</div>
+                  <div id="dateDisplay">Thứ Ba, 31/3/2026</div>
+                </div>
+              </div>
+              <div class="banner-buttons">
+                <a href="https://www.jnmt.kr" target="_blank" class="btn btn-primary">
+                  <i class="fas fa-globe"></i> <span data-i18n="website">Website trường</span>
+                </a>
+                <button class="btn btn-secondary" onclick="openModal('news')">
+                  <i class="fas fa-newspaper"></i> <span data-i18n="news">Tin tức</span>
+                </button>
+                <a href="https://www.facebook.com/share/1AtjZfCMxM/?mibextid=wwXIfr" target="_blank" class="btn btn-facebook">
+                  <i class="fab fa-facebook"></i> <span data-i18n="facebook">Facebook</span>
+                </a>
+              </div>
+              <div class="weather-widget">
+                <div class="weather-info">
+                  <i class="fas fa-cloud-sun"></i>
+                  <div>
+                    <div class="weather-temp">--°C</div>
+                    <div class="weather-location">Jeollanam-do, KR</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Access Cards -->
+          <div class="cards-grid">
+            <div class="card clickable" onclick="goToPage('ai')">
+              <div class="card-icon">🤖</div>
+              <h3 data-i18n="ai_assistant">Trợ lý AI</h3>
+              <p data-i18n="ai_description">Hỏi đáp thông minh</p>
+            </div>
+            <div class="card clickable" onclick="goToPage('dictionary')">
+              <div class="card-icon">🌍</div>
+              <h3 data-i18n="dictionary">Dịch thuật</h3>
+              <p data-i18n="dict_languages">6 ngôn ngữ</p>
+            </div>
+            <div class="card clickable" onclick="goToPage('schedule')">
+              <div class="card-icon">📅</div>
+              <h3 data-i18n="schedule_info">Thời khóa biểu</h3>
+              <p data-i18n="schedule_current">Lịch học hôm nay</p>
+            </div>
+            <div class="card clickable" onclick="goToPage('chat')">
+              <div class="card-icon">💬</div>
+              <h3 data-i18n="community">Cộng đồng</h3>
+              <p data-i18n="community_chat">Chat với bạn bè</p>
+            </div>
+          </div>
+
+          <!-- School Info Section -->
+          <div class="info-section">
+            <div class="info-card">
+              <div class="card-title">
+                <i class="fas fa-school"></i>
+                <span data-i18n="school_info">Thông tin trường</span>
+              </div>
+              <div class="info-grid">
+                <div class="info-item">
+                  <span class="label" data-i18n="school_name">Tên trường</span>
+                  <span class="value">전남미래국제고등학교</span>
+                </div>
+                <div class="info-item">
+                  <span class="label" data-i18n="school_name_en">Tên tiếng Anh</span>
+                  <span class="value">Jeonnam Future International High School</span>
+                </div>
+                <div class="info-item">
+                  <span class="label" data-i18n="founded">Khai trường</span>
+                  <span class="value">01/03/2026</span>
+                </div>
+                <div class="info-item">
+                  <span class="label" data-i18n="location">Địa điểm</span>
+                  <span class="value">Gangjin-gun, Jeollanam-do, Hàn Quốc</span>
+                </div>
+                <div class="info-item">
+                  <span class="label" data-i18n="target">Đối tượng</span>
+                  <span class="value" data-i18n="target_desc">Học sinh đa văn hóa & sinh viên quốc tế</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- User Info -->
+            <div class="info-card">
+              <div class="card-title">
+                <i class="fas fa-user-circle"></i>
+                <span data-i18n="student_info">Thông tin học sinh</span>
+              </div>
+              <div id="homeUserInfo" class="user-info not-logged">
+                <span data-i18n="not_logged">Chưa đăng nhập.</span>
+                <button class="link-btn" onclick="openModal('login')" data-i18n="login_now">Đăng nhập ngay →</button>
+              </div>
+            </div>
+
+            <!-- Creator Info -->
+            <div class="info-card creator-card">
+              <div class="card-title" style="color:#2563eb;">
+                <i class="fas fa-code"></i>
+                <span data-i18n="creator">Chủ web</span>
+              </div>
+              <div class="creator-info">
+                <div class="avatar">VT</div>
+                <div class="creator-details">
+                  <div class="creator-name">Vũ Tâm</div>
+                  <div class="creator-role" data-i18n="creator_role">Học sinh · 전남미래국제고등학교</div>
+                  <a href="https://www.facebook.com/share/1AtjZfCMxM/?mibextid=wwXIfr" target="_blank" class="creator-social">
+                    <i class="fab fa-facebook"></i> <span data-i18n="facebook">Facebook</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- AI Assistant Page -->
+      <section id="ai" class="page">
+        <div class="page-container">
+          <div class="ai-container">
+            <div class="ai-header">
+              <h2><i class="fas fa-robot"></i> <span data-i18n="ai_assistant">Trợ lý AI</span></h2>
+              <p data-i18n="ai_subtitle">Hỏi bất kỳ điều gì, tôi sẽ giúp bạn</p>
+            </div>
+
+            <div id="chatBox" class="chat-box">
+              <div class="chat-message system">
+                <p data-i18n="ai_welcome">Xin chào! Tôi là trợ lý AI của trường JNMT. Tôi có thể giúp bạn về học tập, ngôn ngữ, và các vấn đề khác. Hãy đặt câu hỏi nhé!</p>
+              </div>
+            </div>
+
+            <div class="chat-input-area">
+              <textarea id="aiInput" class="chat-input" placeholder="Hỏi tôi điều gì đó..." rows="3"></textarea>
+              <button id="aiSendBtn" class="btn btn-primary" data-i18n="send">Gửi</button>
+              <div id="aiError" class="error-message"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Dictionary Page -->
+      <section id="dictionary" class="page">
+        <div class="page-container">
+          <div class="dict-container">
+            <div class="dict-header">
+              <h2><i class="fas fa-book"></i> <span data-i18n="dictionary">Từ điển</span></h2>
+              <p data-i18n="dict_subtitle">Dịch giữa 6 ngôn ngữ</p>
+            </div>
+
+            <div class="dict-controls">
+              <div class="dict-input-group">
+                <textarea id="dictInput" class="dict-input" placeholder="Nhập văn bản để dịch..." rows="4"></textarea>
+              </div>
+
+              <div class="dict-languages">
+                <select id="sourceLanguage" class="language-selector">
+                  <option value="vi">🇻🇳 Tiếng Việt</option>
+                  <option value="ko">🇰🇷 한국어</option>
+                  <option value="en">🇬🇧 English</option>
+                  <option value="ru">🇷🇺 Русский</option>
+                  <option value="mn">🇲🇳 Монгол</option>
+                  <option value="kk">🇰🇿 Қазақ</option>
+                </select>
+                <button class="swap-btn" id="swapLanguages" title="Đổi ngôn ngữ">
+                  <i class="fas fa-arrow-right-arrow-left"></i>
+                </button>
+                <select id="targetLanguage" class="language-selector">
+                  <option value="en">🇬🇧 English</option>
+                  <option value="vi">🇻🇳 Tiếng Việt</option>
+                  <option value="ko">🇰🇷 한국어</option>
+                  <option value="ru">🇷🇺 Русский</option>
+                  <option value="mn">🇲🇳 Монгол</option>
+                  <option value="kk">🇰🇿 Қазақ</option>
+                </select>
+              </div>
+
+              <button id="dictTranslateBtn" class="btn btn-primary" data-i18n="translate">Dịch</button>
+            </div>
+
+            <div id="dictResult" class="dict-result"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Schedule Page -->
+      <section id="schedule" class="page">
+        <div class="page-container">
+          <div class="schedule-container">
+            <div class="schedule-header">
+              <h2><i class="fas fa-calendar"></i> <span data-i18n="schedule">Thời khóa biểu</span></h2>
+              <p data-i18n="schedule_coming">Sắp có cập nhật</p>
+            </div>
+            <div class="placeholder-message">
+              <i class="fas fa-clock"></i>
+              <p data-i18n="schedule_coming_soon">Tính năng thời khóa biểu sẽ sớm được cập nhật</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Chat Page -->
+      <section id="chat" class="page">
+        <div class="page-container">
+          <div class="chat-container">
+            <div class="chat-header">
+              <h2><i class="fas fa-comments"></i> <span data-i18n="chat">Chat Cộng đồng</span></h2>
+              <p id="onlineCount" data-i18n="loading">Đang tải...</p>
+            </div>
+
+            <div id="messagesList" class="messages-list">
+              <div class="loading-spinner">
+                <i class="fas fa-circle-notch"></i>
+                <p data-i18n="loading">Đang tải tin nhắn...</p>
+              </div>
+            </div>
+
+            <div class="message-input-area">
+              <textarea id="messageInput" class="message-input" placeholder="Nhập tin nhắn..." rows="2"></textarea>
+              <button id="messageSendBtn" class="btn btn-primary" data-i18n="send">Gửi</button>
+              <div id="messageError" class="error-message"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Map Page -->
+      <section id="map" class="page">
+        <div class="page-container">
+          <div class="map-container">
+            <div class="map-header">
+              <h2><i class="fas fa-map-location-dot"></i> <span data-i18n="map">Bản đồ</span></h2>
+              <p data-i18n="map_coming">Sắp có cập nhật</p>
+            </div>
+            <div class="placeholder-message">
+              <i class="fas fa-map"></i>
+              <p data-i18n="map_coming_soon">Tính năng bản đồ sẽ sớm được cập nhật</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Modals -->
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 data-i18n="login">Đăng nhập</h2>
+          <button class="modal-close" onclick="closeModal('login')">&times;</button>
+        </div>
+        <form id="loginForm" class="modal-form">
+          <div class="form-group">
+            <label data-i18n="email">Email</label>
+            <input type="email" id="loginEmail" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label data-i18n="password">Mật khẩu</label>
+            <input type="password" id="loginPassword" class="form-control" required>
+          </div>
+          <button type="submit" class="btn btn-primary full-width" data-i18n="login">Đăng nhập</button>
+          <div class="form-divider" data-i18n="or">hoặc</div>
+          <button type="button" class="btn btn-secondary full-width" onclick="openModal('register')" data-i18n="register_new">Đăng ký tài khoản mới</button>
+          <div id="loginError" class="error-message"></div>
+        </form>
+      </div>
     </div>
 
-    <div style="font-size: 12px; font-weight: bold; color: var(--primary); text-align: left; margin-left: 5px;">🚀 Quick Access:</div>
-    <div class="extra-links">
-        <a href="https://classroom.google.com" target="_blank" title="Google Classroom">🎓</a>
-        <a href="https://dict.naver.com/vi-ko-vietnamese-dictionary/" target="_blank" title="Từ điển Naver">📖</a>
-        <a href="https://map.kakao.com" target="_blank" title="Kakao Map">📍</a>
-        <a href="https://translate.google.com" target="_blank" title="Google Dịch">🔤</a>
-        <a href="https://www.facebook.com/messages/" target="_blank" title="Messenger">💬</a>
+    <!-- Register Modal -->
+    <div id="registerModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 data-i18n="register">Đăng ký</h2>
+          <button class="modal-close" onclick="closeModal('register')">&times;</button>
+        </div>
+        <form id="registerForm" class="modal-form">
+          <div class="form-group">
+            <label data-i18n="username">Tên người dùng</label>
+            <input type="text" id="registerUsername" class="form-control" minlength="3" maxlength="30" required>
+          </div>
+          <div class="form-group">
+            <label data-i18n="email">Email</label>
+            <input type="email" id="registerEmail" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label data-i18n="password">Mật khẩu</label>
+            <input type="password" id="registerPassword" class="form-control" minlength="6" required>
+          </div>
+          <button type="submit" class="btn btn-primary full-width" data-i18n="register">Đăng ký</button>
+          <div class="form-divider" data-i18n="or">hoặc</div>
+          <button type="button" class="btn btn-secondary full-width" onclick="openModal('login')" data-i18n="have_account">Bạn đã có tài khoản?</button>
+          <div id="registerError" class="error-message"></div>
+        </form>
+      </div>
     </div>
+  </div>
 
-    <div class="footer">
-        👤 <b>Học sinh: Vu Tam</b><br>
-        📧 phamlongh230@gmail.com | 📞 010-6315-8995
-    </div>
-</div>
-
-<script>
-    function update() {
-        const now = new Date();
-        document.getElementById('clock').innerText = now.toLocaleTimeString('ko-KR', {hour12: false});
-        document.getElementById('date').innerText = now.toLocaleDateString('vi-VN', {weekday: 'long', day: 'numeric', month: 'long'});
-    }
-    setInterval(update, 1000); update();
-
-    function googleTranslateElementInit() {
-        new google.translate.TranslateElement({pageLanguage: 'ko'}, 'google_translate_element');
-    }
-</script>
-<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
+  <!-- Scripts -->
+  <script src="i18n.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
-<div style="font-size: 12px; font-weight: bold; color: var(--primary); text-align: left; margin-left: 5px; margin-top: 15px;">🚀 Truy cập nhanh:</div>
-    <div class="extra-links">
-        <a href="https://www.facebook.com/vutam1810/" target="_blank" title="Facebook Vũ Tâm" style="filter: drop-shadow(0 0 2px #1877F2);">🔵</a> 
-        <a href="https://classroom.google.com" target="_blank" title="Google Classroom">🎓</a>
-        <a href="https://dict.naver.com/vi-ko-vietnamese-dictionary/" target="_blank" title="Từ điển Naver">📖</a>
-        <a href="https://map.kakao.com" target="_blank" title="Kakao Map">📍</a>
-        <a href="https://translate.google.com" target="_blank" title="Google Dịch">🔤</a>
-    </div>
